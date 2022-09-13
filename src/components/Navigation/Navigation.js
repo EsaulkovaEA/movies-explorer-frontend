@@ -19,10 +19,10 @@ function Navigation() {
                 </Route>
             </Switch>
         </nav>
-        <div className="header__account">
-            <Link to="/profile" className='header__text'>Аккаунт</Link>
+        <Link to="/profile" className="header__account">
+            <p className='header__text'>Аккаунт</p>
             <div className='header__account-icon'></div>
-          </div>
+          </Link>
         </div>
     );
   }

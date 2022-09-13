@@ -30,11 +30,11 @@ function Burger(props) {
                         </Route>
                     </Switch>
                 </nav>
-                <div className="burger__account">
-                    <Link to="/profile" className='burger__text'>Аккаунт</Link>
+                <Link to="/profile" className="burger__account">
+                    <p className='burger__text'>Аккаунт</p>
                     <div className='burger__account-icon'></div>
-                </div>
-                <button className='burger__close' onClick={props.burgerToggle}></button>
+                </Link>
+                <button className='burger__close' type="button" onClick={props.burgerToggle}></button>
             </div>
         </div>
       </div>

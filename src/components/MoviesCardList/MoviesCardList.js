@@ -26,7 +26,7 @@ function MoviesCardList(props) {
             </ul>
             {props.class === "cards" && 
             <div className="cards__also">
-                <button className="cards__other">Ещё</button>
+                <button type="button" className="cards__other">Ещё</button>
             </div>}
             
         </>

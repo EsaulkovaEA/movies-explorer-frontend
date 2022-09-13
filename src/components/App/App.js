@@ -8,7 +8,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import React from 'react';
-import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 
 function App() {
   const [isLogged, setLogged] = React.useState(false);
@@ -31,7 +31,9 @@ function App() {
   }
   
   function handleBurgerToggle() {
+    const page = document.querySelector('.page');
     setBurgerOpen(!isBurgerOpen);
+    isBurgerOpen ? page.style.overflow = 'scroll' : page.style.overflow = 'hidden';
   }
 
   function handleToggleSave() {

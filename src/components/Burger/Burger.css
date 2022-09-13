@@ -21,12 +21,14 @@
   display: flex;
   height: 100vh;
   transition: left 0.5s ease;
+  cursor: default;
 }
 
 .burger__container_active {
   position: absolute;
-  top: -20px;
-  left: calc(57px - 100vw);
+  top: -18px;
+  left: calc(75px - 100vw);
+  height: calc(100vh + 30px);
 }
 
 .burger__overlay {
@@ -36,11 +38,14 @@
 }
 
 .burger__content {
+  height: 100%;
   width: 520px;
   background: #fff;
   position: relative;
-  overflow: hidden;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .burger__menu {
@@ -69,14 +74,12 @@
 
 .burger__account {
   width: 100px;
-  position: absolute;
-  bottom: 92px;
-  left: 210px;
   display: flex;
   gap: 13px;
   align-content: center;
   height: 30px;
-  margin: auto 0;
+  margin: 0 auto 92px;
+  text-decoration: none;
 }
 
 .burger__text {
@@ -110,6 +113,11 @@
   width: 22px;
   height: 22px;
   background-size: contain;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+.burger__close:hover{
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 768px) {
