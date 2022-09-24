@@ -1,0 +1,15 @@
+.app {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}

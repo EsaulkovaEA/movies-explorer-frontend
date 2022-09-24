@@ -1,0 +1,147 @@
+.project__container {
+  max-width: 1280px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 110px 70px;
+}
+
+.title {
+  box-sizing: border-box;
+  padding-bottom: 23px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #000;
+  border-bottom: 1px solid #000;
+}
+
+.project__description {
+  display: flex;
+  gap: 40px;
+  margin-top: 70px;
+}
+
+.project__column {
+  width: calc((100% - 40px) / 2);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.project__subtitle {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #000;
+  margin: 0;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+  margin: 0;
+}
+
+.project__time {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  row-gap: 14px;
+  margin: 110px 0 0;
+}
+
+.project__weeks {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000;
+  padding: 9px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.project__weeks_backend {
+  background: #2be080;
+}
+
+.project__weeks_frontend {
+  background: #f2f2f2;
+}
+
+.project__caption {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+}
+
+@media screen and (max-width: 900px) {
+  .project__container {
+    padding: 90px 50px;
+  }
+
+  .project__description {
+    gap: 30px;
+  }
+
+  .project__column {
+    width: calc((100% - 30px) / 2);
+    gap: 22px;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .project__time {
+    margin-top: 93px;
+    grid-template-columns: 1fr 3.77fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .project__container {
+    padding: 70px 18px;
+  }
+
+  .title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .project__description {
+    flex-direction: column;
+    gap: 56px;
+    margin-top: 60px;
+  }
+
+  .project__column {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .project__time {
+    margin-top: 60px;
+    grid-template-columns: 1fr 1.84fr;
+    row-gap: 10px;
+  }
+}

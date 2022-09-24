@@ -1,0 +1,113 @@
+.me__container {
+  max-width: 1280px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 110px 70px 125px;
+}
+
+.me__info {
+  display: flex;
+  gap: min(270px, calc(43.1vw - 282.5px));
+  margin-top: 66px;
+}
+
+.me__about {
+  max-width: 600px;
+}
+
+.me__avatar {
+  object-fit: cover;
+  display: block;
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+}
+
+.me__subtitle {
+  margin: 18px 0 26px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000;
+  mix-blend-mode: normal;
+}
+
+.me__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+  mix-blend-mode: normal;
+  margin: 0;
+  width: 100%;
+}
+
+.me__github {
+  display: block;
+  text-decoration: none;
+  margin: 99px 0 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+}
+
+@media screen and (max-width: 900px) {
+  .me__container {
+    padding: 90px 50px;
+  }
+
+  .me__info {
+    gap: 49px;
+  }
+
+  .me__avatar {
+    width: 255px;
+    object-fit: contain;
+  }
+
+  .me__subtitle {
+    margin: 16px 0 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .me__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .me__github {
+    margin-top: 87px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .me__container {
+    padding: 70px 14px;
+  }
+
+  .me__info {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+
+  .me__avatar {
+    width: 292px;
+  }
+
+  .me__subtitle {
+    margin-top: 20px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .me__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .me__github {
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,149 @@
+.burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/burger-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.burger_white {
+  background-image: url(../../images/burger-icon-white.png);
+}
+
+.burger__container {
+  position: absolute;
+  top: -15px;
+  left: 74px;
+  width: 100vw;
+  display: flex;
+  height: 100vh;
+  transition: left 0.5s ease;
+  cursor: default;
+}
+
+.burger__container_active {
+  position: absolute;
+  top: -18px;
+  left: calc(75px - 100vw);
+  height: calc(100vh + 30px);
+}
+
+.burger__overlay {
+  width: calc(100vw - 520px);
+  background: #000;
+  opacity: 0.3;
+}
+
+.burger__content {
+  height: 100%;
+  width: 520px;
+  background: #fff;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.burger__menu {
+  margin: 159px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  text-align: center;
+  width: 340px;
+}
+
+.burger__link {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+  color: #000;
+}
+
+.burger__link_active {
+  width: max-content;
+  margin: 0 auto;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #000;
+}
+
+.burger__account {
+  width: 100px;
+  display: flex;
+  gap: 13px;
+  align-content: center;
+  height: 30px;
+  margin: 0 auto 92px;
+  text-decoration: none;
+}
+
+.burger__text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  margin: auto 0;
+  color: #000;
+  text-decoration: none;
+}
+
+.burger__account-icon {
+  background-image: url(../../images/account-black.png);
+  background-repeat: no-repeat;
+  background-size: 10px 11px;
+  background-position: center center;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+}
+
+.burger__close {
+  display: block;
+  border: none;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  background: url(../../images/close.png) no-repeat;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+.burger__close:hover{
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .burger__overlay {
+    display: none;
+  }
+
+  .burger__content {
+    width: 100vw;
+  }
+
+  .burger__menu {
+    margin: 144px auto 0;
+    width: 300px;
+    gap: 24px;
+  }
+
+  .burger__account {
+    position: absolute;
+    bottom: 48px;
+    left: calc((100vw - 100px) / 2);
+  }
+}
