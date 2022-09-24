@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.form__search {
+.form__form {
   display: flex;
   border-bottom: 1px solid #e8e8e8;
   box-sizing: border-box;
@@ -23,8 +23,15 @@
   height: 46px;
 }
 
+.form__input-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .form__input {
-  width: calc(100% - 68px);
+  width: 100%;
   border: none;
   text-align: center;
   font-weight: 500;
@@ -34,25 +41,41 @@
   padding: 0;
 }
 
+.form__input_error {
+  border: 1px solid #ff004d;
+  color: #ff004d;
+}
+
 .form__input::placeholder {
   color: #a0a0a0;
 }
 
 .form__button {
   display: block;
-  background-color: #fff;
-  background-image: url(../../images/find.png);
+  background-color: #3456f3;
+  background-image: url(../../images/find.svg);
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 0 center;
+  background-size: 5px 12px;
+  background-position: center center;
   width: 34px;
-  height: 46px;
+  height: 34px;
   border: none;
+  border-radius: 48px;
+  padding: 0;
   cursor: pointer;
   transition: opacity 0.5s ease;
 }
-.form__button:hover{
+.form__button:hover {
   opacity: 0.7;
+}
+
+.form__button_inactive {
+  background-color: #ccc;
+  cursor: default;
+}
+
+.form__button_inactive:hover {
+  opacity: 1;
 }
 
 .form__select {
@@ -114,6 +137,28 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 0 0;
+}
+
+.check_active {
+  background: url(../../images/check-on.png);
+}
+
+.check_inactive {
+  background: url(../../images/check-off.png);
+}
+
+.form__error {
+  display: none;
+}
+
+.form__error_active {
+  display: block;
+  color: #ff004d;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 38px;
+  left: 0;
 }
 
 @media screen and (max-width: 900px) {

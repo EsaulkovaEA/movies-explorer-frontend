@@ -1,0 +1,14 @@
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.none {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}

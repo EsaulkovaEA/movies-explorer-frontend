@@ -31,7 +31,7 @@ function Burger(props) {
                     </Switch>
                 </nav>
                 <Link to="/profile" className="burger__account">
-                    <p className='burger__text'>Аккаунт</p>
+                    <p className='burger__text'>{props.userName}</p>
                     <div className='burger__account-icon'></div>
                 </Link>
                 <button className='burger__close' type="button" onClick={props.burgerToggle}></button>

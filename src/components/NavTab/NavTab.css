@@ -27,6 +27,7 @@
   line-height: 18px;
   text-decoration: none;
   color: inherit;
+  white-space: nowrap;
 }
 
 .navtab__item_active {
@@ -90,7 +91,7 @@
     display: none;
   } */
 
-  .navtab__container {
+  .navtab__menu_promo {
     display: none;
   }
 }

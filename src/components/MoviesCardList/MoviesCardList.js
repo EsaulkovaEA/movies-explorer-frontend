@@ -1,35 +1,28 @@
-import {films, savedFilms} from "../../utils/constants";
+import { moviesApi } from "../../utils/MoviesApi";
+import { CardsContext } from "../../contexts/CardsContext";
 import MoviesCard from "../../components/MoviesCard/MoviesCard";
+import React from "react";
 
 function MoviesCardList(props) {
-    let list;
-    if (props.class === "cards") {
-        list = films;
-    } else {
-        list = savedFilms;
-    }
+    const cardsContext = React.useContext(CardsContext);
     return (
-        <>
-            <ul className={props.class}>
-                {list.map((item, _id) => (
-                <div className="card__container" key={_id}>
-                    <MoviesCard
-                    name={item.name}
-                    url={item.url}
-                    time={item.time}
-                    isSaved={props.isSaved}
-                    toggleSave={props.toggleSave}
-                    class={props.class}
-                    />
-                </div>
+                <ul className={props.class}>
+                {cardsContext.map((item, _id) => (
+                    <div className="card__container" key={_id}>
+                        <MoviesCard
+                        name={item.nameRU}
+                        url={props.class === 'cards' ? `${moviesApi._baseUrl}${item.image.url}` : `${item.image}`}
+                        time={`${Math.floor(item.duration / 60) ? `${Math.floor(item.duration / 60)} ч` : ''} ${item.duration % 60 ? `${item.duration % 60} мин`: ''}`}
+                        saveCard={props.saveCard}
+                        deleteCard={props.deleteCard}
+                        trailer={item.trailerLink}
+                        class={props.class}
+                        card={item}
+                        cardList={props.cardList}
+                        submitCards={props.submitCards}/>
+                    </div>
                 ))}
-            </ul>
-            {props.class === "cards" && 
-            <div className="cards__also">
-                <button type="button" className="cards__other">Ещё</button>
-            </div>}
-            
-        </>
+            </ul>          
     );
   }
   

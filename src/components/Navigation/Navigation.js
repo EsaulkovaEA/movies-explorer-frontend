@@ -1,6 +1,6 @@
 import {Link, Switch, Route} from 'react-router-dom';
 
-function Navigation() {
+function Navigation(props) {
     return (
         <div className='navtab__container'>
         <nav className="navtab__menu navtab__menu_active">
@@ -20,7 +20,7 @@ function Navigation() {
             </Switch>
         </nav>
         <Link to="/profile" className="header__account">
-            <p className='header__text'>Аккаунт</p>
+            <p className='header__text'>{props.userName}</p>
             <div className='header__account-icon'></div>
           </Link>
         </div>

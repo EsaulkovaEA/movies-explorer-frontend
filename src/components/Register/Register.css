@@ -43,25 +43,31 @@
 
 .register__input_error {
   color: #ff3055;
-  margin-bottom: 0;
 }
 
 .register__error {
   display: none;
 }
 
+.register__submit-error {
+  color: #ff3055;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
 .register__error_active {
   display: block;
   color: #ff3055;
   position: absolute;
-  bottom: -17px;
+  bottom: 5px;
   left: 0;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
 }
 
-.register__submit {
+.register__button {
   display: block;
   width: 100%;
   border: none;
@@ -77,6 +83,11 @@
   margin-top: 152px;
   cursor: pointer;
   transition: opacity 0.5s ease;
+}
+
+.register__button_inactive {
+  background: #ccc;
+  cursor: default;
 }
 
 .register__submit:hover {

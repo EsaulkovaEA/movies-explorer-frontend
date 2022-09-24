@@ -1,4 +1,4 @@
-.profile {
+.profile__form {
   max-width: 1280px;
   margin: 0 auto;
   padding: 74px 0 70px;
@@ -17,11 +17,33 @@
   list-style: none;
 }
 
+.profile__auth-container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__error {
+  display: none;
+}
+
+.profile__error_active {
+  display: block;
+  color: #ff3055;
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
 .profile__field {
   display: flex;
   width: 410px;
   justify-content: space-between;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .profile__field:first-of-type {
@@ -58,13 +80,17 @@
   line-height: 16px;
 }
 
-.profile__submit {
+.profile__button {
   background: #fff;
   border: none;
   text-align: center;
   font-weight: 400;
   cursor: pointer;
   transition: opacity 0.5s ease;
+}
+
+.profile__button_inactive {
+  cursor: default;
 }
 
 .profile__submit:hover {
