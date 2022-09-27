@@ -8,7 +8,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import React from 'react';
-import {Route, Switch, useHistory, withRouter, useLocation} from 'react-router-dom';
+import {Route, Switch, useHistory, withRouter, useLocation, Redirect} from 'react-router-dom';
 import { auth } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -20,6 +20,7 @@ function App() {
   const [userName, setUserName] = React.useState('Аккаунт');
   const [currentUser, setCurrentUser] = React.useState({});
   const [error, setError] = React.useState('');
+  const [success, setSuccess] = React.useState('');
 
   const history = useHistory();
   const location = useLocation();
@@ -32,8 +33,13 @@ function App() {
         setUserName(res.name);
         handleLogin(email, password);
       }).catch((err) => {
-        err === "Ошибка: 409" ? setError('Пользователь с таким email уже существует') : setError('При регистрации пользователя произошла ошибка');
-      });
+        if (err === "Ошибка: 409") {
+          setError('Пользователь с таким email уже существует'); 
+          setTimeout(()=> {setError('')}, 5000);
+        } else {
+          setError('При регистрации пользователя произошла ошибка');
+          setTimeout(()=>{setError('')}, 5000);
+      }});
   }
 
   function tokenCheck () {
@@ -62,8 +68,13 @@ function App() {
         })
       })
       .catch((err) => {
-        err === "Ошибка: 401" ? setError("Вы ввели неправильный логин или пароль") : setError('При авторизации пользователя произошла ошибка');
-      });
+        if (err === "Ошибка: 401") {
+          setError("Вы ввели неправильный логин или пароль");
+          setTimeout(()=>{setError('')}, 5000);
+        } else {
+          setError('При авторизации пользователя произошла ошибка');
+          setTimeout(()=>{setError('')}, 5000);
+      }});
   }
 
   function handleQuit() {
@@ -85,10 +96,17 @@ function App() {
       .then((res) => {
         setCurrentUser(res);
         setUserName(res.name);
+        setSuccess("Данные профиля успешно обновлены");
+        setTimeout(()=>{setSuccess('')}, 5000);
       })
       .catch((err) => {
-        err === "Ошибка: 409" ? setError('Пользователь с таким email уже существует') : setError('При обновлении профиля произошла ошибка');
-      });
+        if (err === "Ошибка: 409")  {
+          setError('Пользователь с таким email уже существует');
+          setTimeout(()=>{setError('')}, 5000);
+         } else {
+          setError('При обновлении профиля произошла ошибка');
+          setTimeout(()=>{setError('')}, 5000);
+      }});
   }
 
   function saveCard(card) {
@@ -106,11 +124,13 @@ function App() {
 
   function deleteCard(card) {
     const jwt = localStorage.getItem('jwt');
+    const deletedCard = location.pathname === "/movies" ? cards.filter((item) => item.movieId === card.id)[0] : card;
     if (jwt) {
       auth
-        .deleteCard(card._id)
+        .deleteCard(deletedCard._id)
         .then(() => {
-          setCards((item) => item.filter((data) => data._id !== card._id));
+          setCards(cards.filter((data) => data._id !== deletedCard._id));
+          localStorage.setItem("savedcards", JSON.stringify(cards.filter((item) => (item.owner === currentUser._id) && (item._id !== card._id))));
         })
         .catch((err) => console.log(err));
     }
@@ -148,7 +168,7 @@ function App() {
         </Route>
         <ProtectedRoute isLogged={isLogged} exact path="/movies">
           <Header isLogged={isLogged} isPromo={false} burgerToggle={handleBurgerToggle} isOpen={isBurgerOpen} handleLogin={handleLogin} userName={userName}/>
-          <Movies saveCard={saveCard} deleteCard={deleteCard}/>
+          <Movies saveCard={saveCard} deleteCard={deleteCard} cards={cards} setCards={setCards}/>
           <Footer/>
         </ProtectedRoute>
         <ProtectedRoute isLogged={isLogged} exact path="/saved-movies">
@@ -158,14 +178,16 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute isLogged={isLogged} exact path="/profile">
           <Header isLogged={isLogged} isPromo={false} burgerToggle={handleBurgerToggle} isOpen={isBurgerOpen} handleLogin={handleLogin} userName={userName}/>
-          <Profile quit={handleQuit} editProfile={handleEditProfile} name={userName} email={currentUser.email} error={error}/>
+          <Profile quit={handleQuit} editProfile={handleEditProfile} name={userName} email={currentUser.email} error={error} success={success}/>
           <Footer/>
         </ProtectedRoute>
         <Route exact path="/signup">
-          <Register onRegister={handleRegister} error={error}/>
+        {isLogged ? (<Redirect to="/movies"/>) :
+          (<Register onRegister={handleRegister} error={error}/>)}
         </Route>
         <Route exact path="/signin">
-          <Login onLogin={handleLogin} error={error}/>
+        {isLogged ? (<Redirect to="/movies"/>) :
+          (<Login onLogin={handleLogin} error={error}/>)}
         </Route>
         <Route path="*">
             <NotFoundPage/>

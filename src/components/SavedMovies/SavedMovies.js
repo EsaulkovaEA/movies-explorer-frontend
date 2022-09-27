@@ -4,6 +4,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { CardsContext } from "../../contexts/CardsContext";
 import { auth } from "../../utils/MainApi";
+import { shortDuration } from '../../utils/constants';
 import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -13,9 +14,6 @@ function SavedMovies(props) {
   const [cardList, setCardList] = React.useState("");
   const [amount, setAmount] = React.useState(0);
   const [isActive, setActive] = React.useState("none");
-  const width = window.screen.availWidth;
-  const cardContainer = width > 1250 ? 12 : width > 767 ? 16 : 5;
-  const visible = React.useRef(cardContainer);
   const shorts = React.useRef(false);
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -25,7 +23,7 @@ function SavedMovies(props) {
     );
   }
   function renderShortFilms() {
-    return renderCards() && renderCards().filter((item) => item.duration <= 40);
+    return renderCards() && renderCards().filter((item) => item.duration <= shortDuration);
   }
   function toggleCheckbox() {
     const checkbox = document.querySelector(".form__check");
@@ -40,7 +38,7 @@ function SavedMovies(props) {
       localStorage.setItem("savedcheckbox", "true");
       if (localStorage.getItem("savedcards")) {
         const shortList = JSON.parse(localStorage.getItem("savedcards")).filter(
-          (item) => item.duration <= 40
+          (item) => item.duration <= shortDuration
         );
         setCards(shortList);
         setAmount(shortList.length);
@@ -49,24 +47,18 @@ function SavedMovies(props) {
       localStorage.setItem("savedcheckbox", "");
       if (localStorage.getItem("savedcards")) {
         const longList = JSON.parse(localStorage.getItem("savedcards"));
-        setCards(
-          longList.length > visible.current
-            ? longList.slice(0, visible.current)
-            : longList
-        );
+        setCards(longList);
         setAmount(longList.length);
       }
     }
   }
   function onShorts() {
-    visible.current = cardContainer;
     shorts.current = !shorts.current;
-    shorts.current ? submitCards(cards.filter((item) => item.duration <= 40)) : submitCards(JSON.parse(localStorage.getItem("savedcards")));
+    shorts.current ? submitCards(cards.filter((item) => item.duration <= shortDuration)) : submitCards(JSON.parse(localStorage.getItem("savedcards")));
     toggleCheckbox();
   }
   function handleChangeFilm(evt) {
     setSearchText(evt.target.value.toLowerCase());
-    visible.current = cardContainer;
   }
   function submitCards(cards) {
     if (cards) {
@@ -135,7 +127,7 @@ function SavedMovies(props) {
           submitCards={submitCards}
           cardList={props.cards}
         />
-        {!amount && searchText && !cardList && (
+        {!amount && searchText && (
           <p className="cards__error">Ничего не найдено</p>
         )}
       </div>
