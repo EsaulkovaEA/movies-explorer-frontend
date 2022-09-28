@@ -11,7 +11,7 @@ function Header(props) {
                 <img className={props.isLogged ? "header__logo" : "header__logo header__logo_auth"} alt="Логотип" src={props.isLogged ? logoAuth : Logo}/>
             </Link>
             <nav className={!props.isPromo ? "header__menu" : props.isLogged ? "header__menu header__menu_auth" : "header__menu header__menu_inactive"}>
-                <NavTab isLogged={props.isLogged} burgerToggle={props.burgerToggle} isOpen={props.isOpen} handleLogin={props.handleLogin} isPromo={props.isPromo}/>
+                <NavTab isLogged={props.isLogged} burgerToggle={props.burgerToggle} isOpen={props.isOpen} handleLogin={props.handleLogin} isPromo={props.isPromo} userName={props.userName}/>
             </nav>
         </div>
     </header>
