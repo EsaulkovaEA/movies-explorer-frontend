@@ -3,8 +3,10 @@ import { validateForm } from '../../utils/FormValidator';
 import {Link} from 'react-router-dom';
 
 function Profile(props) {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
+    const [name, setName] = React.useState(props.name);
+    const [email, setEmail] = React.useState(props.email);
+    const [isDisabled, setDisabled] = React.useState(true);
+    const [error, setError] = React.useState('');
 
     function handleChangeName(evt) {
         setName(evt.target.value);
@@ -15,7 +17,17 @@ function Profile(props) {
     }
     function handleSubmit(evt) {
         evt.preventDefault();
-        props.editProfile({name, email});
+        if (email && name && ((name !== props.name) || (email !== props.email))) {
+            setDisabled(false);
+            props.editProfile({name, email});
+        } else if (email && name && (name === props.name) && (email === props.email)) {
+            setDisabled(true);
+            setError("Вы не внесли изменений в Ваш профиль");
+            setTimeout(() => {setError('')}, 5000);
+        }
+        setName(props.name);
+        setEmail(props.email);
+        setDisabled(true);
     }
 
     React.useEffect(() => {
@@ -44,8 +56,8 @@ function Profile(props) {
         </ul>
         <div className='profile__footer'>
             <p className="profile__submit-message">{props.success}</p>
-            <p className="register__submit-error">{props.error}</p>
-            <button type="submit" className='profile__button'>Редактировать</button>
+            <p className="register__submit-error">{error ? error : props.error}</p>
+            <button type="submit" className={!isDisabled ? "profile__button" : "profile__button profile__button_inactive"} disabled={isDisabled}>Редактировать</button>
             <Link to="/" className='profile__quit' onClick={props.quit}>Выйти из аккаунта</Link>
         </div>
       </form>
